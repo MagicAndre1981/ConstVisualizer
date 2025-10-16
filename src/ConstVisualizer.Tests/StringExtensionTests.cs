@@ -2,9 +2,8 @@
 // Copyright (c) Matt Lacey. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace ConstVisualizer.Tests
 {
@@ -52,7 +51,15 @@ namespace ConstVisualizer.Tests
 		}
 
 		[TestMethod]
-		public async Task IsValidVariableNameAsync_Invalid_AtsignBefore()
+		public async Task IsValidVariableNameAsync_Invalid_OpenBracketAfter()
+		{
+			var actual = await "SOMETHING".IsValidVariableNameAsync(' ', '(');
+
+			Assert.IsFalse(actual);
+		}
+
+		[TestMethod]
+		public async Task IsValidVariableNameAsync_Invalid_AtSignBefore()
 		{
 			var actual = await "SOMETHING".IsValidVariableNameAsync('@', ' ');
 

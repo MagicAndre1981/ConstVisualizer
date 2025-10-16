@@ -2,11 +2,11 @@
 // Copyright (c) Matt Lacey. All rights reserved.
 // </copyright>
 
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.Shell;
 
 namespace ConstVisualizer
 {
@@ -146,6 +146,12 @@ namespace ConstVisualizer
 					}
 					else if (charAfter == '_')
 					{
+						// An underscore suggests it's still part of the name
+						result = false;
+					}
+					else if (charAfter == '(')
+					{
+						// An opening bracket afterwards suggests a constructor or method call
 						result = false;
 					}
 				}
